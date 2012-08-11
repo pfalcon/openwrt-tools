@@ -1,16 +1,13 @@
 #!/bin/bash
 
+if [ "$1" == "" ]; then
+    echo "Usage: $0 <config file>"
+    exit 1
+fi
+
 set -x
 
-ROUTER_IP=192.168.2.1
-ROUTER_USER=root
-#LOCAL_IP=192.168.2.247
-LOCAL_IF=eth0
-IMAGE=openwrt-brcm47xx-squashfs.trx
-
-# Mandatorrily use keep alives, because otherwise ssh connection will hang
-# on router reboot. 3*3 thus will timeout in ~9s.
-SSH_OPTS="-o ServerAliveInterval=3 -o ServerAliveCountMax=3"
+. $1
 
 CRED="$ROUTER_USER@$ROUTER_IP"
 
