@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+# This script assumes that there is already OpenWRT installation on a target
+# device (with SSH daemon running), and upgrades it to a new OpenWRT image,
+# following with configuring the device for overlay rootfs on an external
+# (usually USB) drive.
+#
+# TODO:
+# 1. This script is a proof of concept and so far preserves previous install's
+#    config, and configures only some aspects of system (e.g. rootfs overlay,
+#    but not network). Make sure this script is able to configure system
+#    completely from scratch.
+#
 
 if [ "$1" == "" ]; then
     echo "Usage: $0 <config file>"
