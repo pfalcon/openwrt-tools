@@ -1,0 +1,18 @@
+OpenWRT Install and Maintenance Scripts
+=======================================
+
+Why?
+----
+
+OpenWRT is well-developed and supported embedded Linux
+distribution. However, deployment of it real-world condition faces
+some challanges, like ease of initial setup and portability between
+different hardware devices. These scripts are intended to simplify
+and streamline initial setup and following re-setup of OpenWRT on
+various supported devices, reusing and establishing best practices
+for deployment and system management. The scripts are intended to
+serve as executable documentation - to be human readable and
+twekable, and easy to follow step by step in manual mode. At the
+same time, once needed configuration is established, the scripts
+can provided automated means to install and configure OpenWRT on
+any number devices, or recover/resetup and node from scratch.
