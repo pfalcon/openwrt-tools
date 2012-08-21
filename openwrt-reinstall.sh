@@ -121,10 +121,11 @@ opkg update
 opkg install kmod-usb-ohci kmod-usb2
 # Generic USB device drivers
 opkg install kmod-usb-storage
-# USB support tools
-opkg install usbutils
 # External storage filesystems
 opkg install kmod-fs-ext2
+# fsck to check rootfs overlay before mounting, or else we'll have problems
+# in case of power failures.
+opkg install e2fsprogs
 # OpenWRT tools for support external storage
 opkg install block-mount block-hotplug block-extroot
 # Due to some symbols conflict, ohci-hcd doesn't load automatically when package installed,
@@ -135,9 +136,12 @@ uci set fstab.@mount[0].fstype=ext2
 uci set fstab.@mount[0].options=rw,noatime
 uci set fstab.@mount[0].target=/mnt/sda1
 uci set fstab.@mount[0].is_rootfs=1
+uci set fstab.@mount[0].enabled_fsck=1
 uci set fstab.@mount[0].enabled=1
 
 uci set fstab.@swap[0].enabled=1
+
+uci commit
 
 echo "Waiting for attached USB drive to be recognized"
 sleep 10
