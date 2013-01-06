@@ -24,7 +24,7 @@ opkg install kmod-usb-acm
 # Normal less with '/' (search regexp) command, need to overwrite
 # busybox' version
 opkg install --force-overwrite less
-# Something may crash or misbehave, alwyas have debugging tools
+# Something may crash or misbehave, always have debugging tools
 opkg install gdb strace
 # The language. If readline package is not installed, "import readline" will segfault
 opkg install python readline
