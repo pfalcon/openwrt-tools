@@ -27,8 +27,9 @@ opkg install kmod-usb-acm
 opkg install --force-overwrite less
 # Something may crash or misbehave, always have debugging tools
 opkg install gdb strace
-# The language. If readline package is not installed, "import readline" will segfault
-opkg install python libreadline
+# Python with distribute tools (incl. easy_install). If readline
+# package is not installed, "import readline" will segfault
+opkg install python distribute libreadline
 
 # Bluez, etc. require DBus
 opkg install dbus dbus-utils dbus-python
