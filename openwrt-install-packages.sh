@@ -7,12 +7,13 @@ fi
 
 set -x
 
+set -e
 . $1
 
 CRED="$ROUTER_USER@$ROUTER_IP"
 SSH="ssh $SSH_OPTS $CRED"
+set +e
 
-set -e
 $SSH <<EOF
 set -xe
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
@@ -31,15 +32,20 @@ opkg install python libreadline
 
 # Bluez, etc. require DBus
 opkg install dbus dbus-utils dbus-python
-/etc/init.d/dbus enable
-/etc/init.d/dbus start
+# If already enabled, returns 1
+/etc/init.d/dbus enable || true
+/etc/init.d/dbus start || true
 
 # It's all about connectivity - Bluetooth
 opkg install kmod-bluetooth bluez-libs bluez-utils bluez-hcidump python-bluez
-/etc/init.d/bluez-utils enable
-/etc/init.d/bluez-utils start
+/etc/init.d/bluez-utils enable || true
+/etc/init.d/bluez-utils start || true
 
 # The above is enough to run remote-version0.1.py client for PS3 BT BD Remote
 # (will handle adhoc "pairing" on its own).
 
 EOF
+
+if [ $? -ne 0 ]; then
+    echo "ERROR: Installation failed"
+fi
