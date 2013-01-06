@@ -27,7 +27,7 @@ opkg install --force-overwrite less
 # Something may crash or misbehave, always have debugging tools
 opkg install gdb strace
 # The language. If readline package is not installed, "import readline" will segfault
-opkg install python readline
+opkg install python libreadline
 
 # Bluez, etc. require DBus
 opkg install dbus dbus-utils dbus-python
